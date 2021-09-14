@@ -14,7 +14,15 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
+    /*
+    The ShopListRepository class implements an interface that has several
+    methods defined, has as parameter a class that deals with
+    the return of lists, items and updates (all dummy and with delay, update toast every 5 seconds)
+     */
+
     private val shopListRepository = ShopListRepository(ShopListApiMock())
+
+
 
     val shopLists = MutableLiveData<List<Pair<ShopListResponse, List<ShopListItemResponse>>>>()
     private val eventLiveData = MutableLiveData<String>()
@@ -33,6 +41,7 @@ class MainViewModel : ViewModel() {
     }
 
     fun events(): LiveData<String> = eventLiveData
+    //events is used in MainFragment to make that "Update $ it" index toast
     private fun getUpdateEvents() {
         GlobalScope.launch {
             shopListRepository.updateEvents().collect {

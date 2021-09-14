@@ -33,9 +33,17 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
+
+        /*
+        the shoplist is accessed to "notice" the changes,
+         I don't understand exactly why the "message" and "lastest list icon"
+         identifications are made in this code block
+         */
         viewModel!!.shopLists.observe(this, { lists ->
             val progressBar = view.findViewById<ProgressBar>(R.id.message)
             val latestIcon = view.findViewById<ImageView>(R.id.latest_list_icon)
+
+            //RecyclerView is not identified
 
             val shopLists = lists.map { mapShopList(it.first, it.second) }.also {
                 latestIcon?.load(it.first().iconUrl)
@@ -45,10 +53,15 @@ class MainFragment : Fragment() {
 
             Log.i("LOGTAG", "LOLOLOL Is it done already?")
 
+            /*We need an adapter with a ViewHolder to be able to display the list, but shopLists must
+            be declared elsewhere
+            * */
 
             // Display the list in recyclerview
             // adapter.submitList(shopLists)
         })
+
+
         viewModel!!.events().observe(this, {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         })

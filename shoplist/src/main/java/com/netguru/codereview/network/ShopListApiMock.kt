@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class ShopListApiMock : ShopListApi {
+    //Dummy data
     override suspend fun getShopLists(): List<ShopListResponse> =
         coroutineScope {
             List(9999) { index ->
@@ -19,6 +20,7 @@ class ShopListApiMock : ShopListApi {
             }
         }
 
+    //Dummy data
     override suspend fun getShopListItems(listId: String): List<ShopListItemResponse> =
         coroutineScope {
             Thread.sleep(2)
@@ -31,6 +33,7 @@ class ShopListApiMock : ShopListApi {
             }
         }
 
+    //Used for events to toast Updates every 5 seconds
     override fun getUpdateEvents(): Flow<String> = flow {
         var counter = 0
         while (true) {
