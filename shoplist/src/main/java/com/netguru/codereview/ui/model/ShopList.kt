@@ -2,7 +2,6 @@ package com.netguru.codereview.ui.model
 
 import com.netguru.codereview.network.model.ShopListItemResponse
 
-//Model for ShopList
 class ShopList(
     val id: String,
     val userId: Int,

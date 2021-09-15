@@ -3,7 +3,6 @@ package com.netguru.codereview.network.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-//Model for ShopListResponse
 data class ShopListResponse(
     val list_id: String,
     val userId: Int,
